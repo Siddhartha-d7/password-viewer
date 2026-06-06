@@ -1,0 +1,18 @@
+{
+  "name": "password-viewer-extension",
+  "version": "1.0.0",
+  "description": "A browser extension to view/hide passwords on any website",
+  "main": "background/background.js",
+  "scripts": {
+    "setup": "node scripts/build-config.js",
+    "prestart": "npm run setup"
+  },
+  "keywords": [
+    "chrome-extension",
+    "password-viewer"
+  ],
+  "author": "Antigravity",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {}
+}

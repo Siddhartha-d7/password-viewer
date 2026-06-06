@@ -1,0 +1,23 @@
+# Virtual Environment
+venv/
+.venv/
+ENV/
+env/
+
+# Node dependencies
+node_modules/
+
+# Environment configurations and Secrets
+.env
+.env.local
+config/secrets.js
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs and debug files
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

@@ -1,0 +1,48 @@
+/* Injected eye-toggle styling */
+.reveal-pass-parent {
+  position: relative !important;
+}
+
+.reveal-pass-input-padding {
+  padding-right: 36px !important;
+}
+
+.reveal-pass-btn {
+  position: absolute !important;
+  right: 10px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  background: transparent !important;
+  border: none !important;
+  padding: 4px !important;
+  margin: 0 !important;
+  cursor: pointer !important;
+  z-index: 99999 !important; /* Stand above autofill and custom overlays */
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: #64748b !important; /* Slate color */
+  border-radius: 4px !important;
+  transition: color 0.2s ease, transform 0.1s ease, background-color 0.2s ease !important;
+  line-height: 0 !important;
+  width: 24px !important;
+  height: 24px !important;
+}
+
+.reveal-pass-btn:hover {
+  color: #6366f1 !important; /* Indigo primary hover */
+  background-color: rgba(99, 102, 241, 0.08) !important;
+  transform: translateY(-50%) scale(1.08) !important;
+}
+
+.reveal-pass-btn:active {
+  transform: translateY(-50%) scale(0.92) !important;
+}
+
+/* Light SVG sizing inside the button */
+.reveal-pass-btn svg {
+  width: 16px !important;
+  height: 16px !important;
+  pointer-events: none !important; /* Ensure click bubbles to button */
+  display: block !important;
+}

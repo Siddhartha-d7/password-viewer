@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Password Viewer Options</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="popup-container">
+    <!-- Header -->
+    <header class="header">
+      <div class="logo-wrapper">
+        <div class="logo-circle">
+          <svg class="logo-eye" viewBox="0 0 24 24" width="24" height="24">
+            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" class="eye-outer" />
+            <circle cx="12" cy="12" r="3" class="eye-iris" />
+          </svg>
+        </div>
+      </div>
+      <div class="header-text">
+        <h1>RevealPass</h1>
+        <p>Password Visibility Toggle</p>
+      </div>
+    </header>
+
+    <!-- Main Card (Glassmorphic) -->
+    <main class="main-card">
+      <div class="status-row">
+        <span class="status-label">Status</span>
+        <div id="status-badge" class="badge badge-inactive">
+          <span class="pulse-dot"></span>
+          <span id="status-text">Disabled</span>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="toggle-container">
+        <div class="toggle-info">
+          <h3>Show Passwords</h3>
+          <p>Display eye-toggles on all password inputs</p>
+        </div>
+        <div class="toggle-wrapper">
+          <label class="switch">
+            <input type="checkbox" id="power-switch">
+            <span class="slider round"></span>
+          </label>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer / Details -->
+    <footer class="footer">
+      <div class="info-row">
+        <span>Secure Local Execution</span>
+        <span class="security-check">
+          <svg viewBox="0 0 24 24" width="12" height="12">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+          100% Private
+        </span>
+      </div>
+      <div id="debug-info" class="debug-info hidden">
+        <span>Dev Mode Active</span>
+      </div>
+    </footer>
+  </div>
+  <script type="module" src="popup.js"></script>
+</body>
+</html>

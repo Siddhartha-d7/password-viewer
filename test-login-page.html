@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RevealPass Test Environment</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #090d16;
+      --card-bg: #111827;
+      --text: #f3f4f6;
+      --text-muted: #9ca3af;
+      --primary: #6366f1;
+      --primary-hover: #4f46e5;
+      --border: #374151;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 450px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .header {
+      text-align: center;
+    }
+
+    .header h1 {
+      font-size: 2rem;
+      background: linear-gradient(135deg, #a5b4fc 0%, #6366f1 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 8px;
+    }
+
+    .header p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+    }
+
+    .card h2 {
+      font-size: 1.25rem;
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 12px 16px;
+      background-color: #1f2937;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      font-family: inherit;
+      font-size: 0.95rem;
+      transition: all 0.2s ease;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+    }
+
+    button.btn {
+      width: 100%;
+      padding: 12px;
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    button.btn:hover {
+      background-color: var(--primary-hover);
+    }
+
+    .btn-secondary {
+      background-color: transparent !important;
+      border: 1px solid var(--border) !important;
+      color: var(--text) !important;
+      margin-top: 12px;
+    }
+
+    .btn-secondary:hover {
+      background-color: #1f2937 !important;
+    }
+
+    .status-badge {
+      display: inline-block;
+      padding: 4px 8px;
+      border-radius: 4px;
+      background-color: #1e293b;
+      font-family: monospace;
+      font-size: 0.8rem;
+      color: var(--primary);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>RevealPass Lab</h1>
+      <p>Test your browser extension on different fields below</p>
+    </div>
+
+    <!-- Login Card -->
+    <div class="card">
+      <h2>1. Static Login Form</h2>
+      <form onsubmit="event.preventDefault(); alert('Sign In Attempt!');">
+        <div class="form-group">
+          <label for="username">Username or Email</label>
+          <input type="text" id="username" placeholder="enter admin" value="admin@example.com">
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <!-- Using standard container to match relative layout -->
+          <div>
+            <input type="password" id="password" placeholder="enter secret password" value="SuperSecretPassword123!">
+          </div>
+        </div>
+        <button type="submit" class="btn">Sign In</button>
+      </form>
+    </div>
+
+    <!-- Dynamic Card -->
+    <div class="card">
+      <h2>2. Dynamic Form Loader</h2>
+      <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 16px;">
+        Test how the extension handles inputs added via JavaScript (SPAs).
+      </p>
+      
+      <div id="dynamic-container">
+        <!-- Dynamic password field injected here -->
+      </div>
+      
+      <button id="add-field-btn" class="btn btn-secondary">Injected Password Field</button>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('add-field-btn').addEventListener('click', () => {
+      const container = document.getElementById('dynamic-container');
+      
+      // Clear previous if any
+      container.innerHTML = '';
+      
+      const formGroup = document.createElement('div');
+      formGroup.className = 'form-group';
+      formGroup.style.marginTop = '12px';
+      
+      const label = document.createElement('label');
+      label.textContent = 'Dynamic Password Input';
+      
+      const inputDiv = document.createElement('div');
+      
+      const input = document.createElement('input');
+      input.type = 'password';
+      input.placeholder = 'Injected dynamically...';
+      input.value = 'DynamicP@ssword99!';
+      
+      inputDiv.appendChild(input);
+      formGroup.appendChild(label);
+      formGroup.appendChild(inputDiv);
+      container.appendChild(formGroup);
+    });
+  </script>
+</body>
+</html>
